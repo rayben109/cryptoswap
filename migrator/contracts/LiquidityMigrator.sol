@@ -2,14 +2,14 @@ pragma solidity =0.6.6;
 
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
-import './IUniswapV2Pair.sol';
+import './ICryptoSwapPair.sol';
 import './BonusToken.sol';
 
 contract LiquidityMigrator {
     IUniswapV2Router02 public router;
-    IUniswapV2Pair public pair;
+    ICryptoSwapPair public pair;
     IUniswapV2Router02 public routerFork;
-    IUniswapV2Pair public pairFork;
+    ICryptoSwapPair public pairFork;
     BonusToken public bonusToken;
     address public admin;
     mapping(address => uint) public unclaimedBalances;
@@ -23,9 +23,9 @@ contract LiquidityMigrator {
         address _bonusToken
     )public {
         router= IUniswapV2Router02(_router);
-        pair = IUniswapV2Pair(_pair);
+        pair = ICryptoSwapPair(_pair);
         routerFork = IUniswapV2Router02(_routerFork);
-        pairFork = IUniswapV2Pair(_pairFork);
+        pairFork = ICryptoSwapPair(_pairFork);
         bonusToken = BonusToken(_bonusToken);
         admin = msg.sender;
     }
